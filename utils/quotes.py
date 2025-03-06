@@ -1,5 +1,7 @@
+import asyncio
 from bs4 import BeautifulSoup
 import requests
+from utils.translation import translate_to_russian
 
 def quotes():
     url = "http://quotes.toscrape.com/"
@@ -19,6 +21,7 @@ def quotes():
         # Присваиваем номер каждой цитате так, чтобы нумерация шла с 1
         print(f"Цитата номер - {i + 1}")
         # Выводим саму цитату, указывая ее id
-        print(text[i].text)
+        print(asyncio.run(translate_to_russian(text[i].text)))
         # Выводим автора цитаты
-        print(f"Автор цитаты - {author[i].text}\n")
+
+        print(f"Автор цитаты - {asyncio.run(translate_to_russian(author[i].text))}\n")
